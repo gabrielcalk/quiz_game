@@ -1,0 +1,60 @@
+/* Defining the purple color on a variable */
+:root{
+    --first-color: rgb(146, 10, 146);
+}
+
+/* Adding font-family, margin and padding 0 and a border-box to all the document */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+/* Adding some padding on the van tag */
+nav{
+    padding: 10px;
+}
+
+/* Adding a color on the "view highscores" text and moving to the left  */
+#view_scores{
+    color: var(--first-color);
+    text-align: left;
+}
+
+/* Adding a color on the section on the nav and floating to the right */
+#section_timer{
+    color: var(--first-color);
+    float: right;
+}
+
+/* Adding inline-block display to the div on the nav */
+.time{
+    display: inline-block;
+}
+
+/* Adding margin, centralizing the text and some width on the section */
+#section_game{
+    margin: auto;
+    text-align: center;
+    margin-top: 100px;
+    width: 500px;
+}
+
+/* Adding a 35px font-size on the title, margin on the bottom of the title and putting in bold */
+.title{
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* Adding font-size, color, background-color, border, padding and margin on the top of the button */
+#button_start{
+    font-size: 17px;
+    color: white;
+    background: var(--first-color);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    margin-top: 25px;
+}
