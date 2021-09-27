@@ -16,6 +16,24 @@ nav{
     padding: 10px;
 }
 
+/* Adding font-size, color, background-color, border, padding and margin on the top of the button */
+.button{
+    font-size: 17px;
+    color: white;
+    background: var(--first-color);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    margin-top: 10px;
+    width: 180px;
+}
+
+/* Adding a different color background and a cursor when pass the mouse on a button */
+button:hover{
+    background-color: rgb(171, 121, 218);
+    cursor: pointer;
+}
+
 /* Adding a color on the "view highscores" text and moving to the left  */
 #view_scores{
     color: var(--first-color);
@@ -26,11 +44,6 @@ nav{
 #section_timer{
     color: var(--first-color);
     float: right;
-}
-
-/* Adding inline-block display to the div on the nav */
-.time{
-    display: inline-block;
 }
 
 /* Adding margin, centralizing the text and some width on the section */
@@ -48,13 +61,22 @@ nav{
     margin-bottom: 25px;
 }
 
-/* Adding font-size, color, background-color, border, padding and margin on the top of the button */
-#button_start{
-    font-size: 17px;
-    color: white;
-    background: var(--first-color);
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 5px;
-    margin-top: 25px;
+#explanation{
+    margin-bottom: 20px;
+}
+
+.hide{
+    display: none;
+}
+
+#choices{
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+#last_page{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

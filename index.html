@@ -16,7 +16,7 @@
         
         <section id= section_timer>
             <span>Time: </span>
-            <div class='time'></div>
+            <span class='countdown'></span>
         </section>
     </nav>
 
@@ -24,12 +24,28 @@
     <main>
         <section id='section_game'>
             <h1 class = 'title'>Coding Quiz Challenge!</h1>
-            <p>
+            <p id = 'show_score' class = 'hide'></p>
+            <ol id='ul_dom' class='hide'></ol>
+
+                <section class='hide' id = 'section_last_page'>
+                    <div id = 'last_page'>
+                        <p id = 'enter_initials'>Enter initials:</p>
+                        <input id= 'input_score' name='player-name' type="text" value="">
+                        <button type = 'submit' id ='btn_submit'>submit</button>
+                    <div id = 'last_page'>
+                </section>
+
+            </div>
+            <div id='choices' class="hide"></div>
+
+            <p id='explanation'>
                 Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
             </p>
-            <button id = 'button_start'>
+
+            <button class = 'button'>
                 Start Quiz
-            </button>  
+           </button>
+
         </section>  
     </main>
 
