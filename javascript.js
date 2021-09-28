@@ -163,21 +163,20 @@ function getScores(event) {
 
     scoreStorage.push(score_and_user);
     
-    localStorage.setItem('user_and_score', JSON.stringify(score_and_user));
+    localStorage.setItem('user_and_score', JSON.stringify(scoreStorage));
     // localStorage.setItem('score', JSON.stringify(time)); 
 
     putScoresOnPage()
 }
 
 function putScoresOnPage() {
-    var storedUserName = JSON.parse(localStorage.getItem('name'));
-    var storedUserScore = JSON.parse(localStorage.getItem('score'));
+    var storedUserName = JSON.parse(localStorage.getItem('user_and_score'));
 
     section_last_page.classList.add('hide')
     ul_dom.classList.remove('hide')
     var li_scores = document.createElement('li');
     var score_and_name = ul_dom.appendChild(li_scores);
-    score_and_name.textContent = (storedUserName + '-' + storedUserScore);
+    score_and_name.textContent = (storedUserName);
 
     addButtons();
 }
