@@ -16,6 +16,7 @@ var time;
 var timer_html;
 
 
+
 const myQuestions = [
     {
         question: 'Commonly used data types do not include:',
@@ -160,24 +161,25 @@ function getScores(event) {
         name: playerName,
     }
 
-    localStorage.setItem('user', JSON.stringify(score_and_user.name));
-    localStorage.setItem('score', JSON.stringify(score_and_user.score));
+    scoreStorage.push(score_and_user);
+    
+    localStorage.setItem('user_and_score', JSON.stringify(score_and_user));
+    // localStorage.setItem('score', JSON.stringify(time)); 
 
     putScoresOnPage()
+}
 
-    function putScoresOnPage() {
-    
-        section_last_page.classList.add('hide')
-        ul_dom.classList.remove('hide')
-        var li_scores = document.createElement('li');
-        var score_and_name = ul_dom.appendChild(li_scores);
-        
-        const storedUserName = JSON.parse(localStorage.getItem('user'));
-        const storedUserScore = JSON.parse(localStorage.getItem('score'));
-        score_and_name.textContent = (storedUserName + storedUserScore);
+function putScoresOnPage() {
+    var storedUserName = JSON.parse(localStorage.getItem('name'));
+    var storedUserScore = JSON.parse(localStorage.getItem('score'));
 
-        addButtons();
-    }
+    section_last_page.classList.add('hide')
+    ul_dom.classList.remove('hide')
+    var li_scores = document.createElement('li');
+    var score_and_name = ul_dom.appendChild(li_scores);
+    score_and_name.textContent = (storedUserName + '-' + storedUserScore);
+
+    addButtons();
 }
 
     function addButtons(){
@@ -196,14 +198,14 @@ function getScores(event) {
         clear_score.setAttribute('class', 'button')
         clear_score.textContent = 'Clear Scores'
         buttons_high_score.appendChild(clear_score);
-        // clear_score.addEventListener('click', cleanScores)
+        clear_score.addEventListener('click', cleanScores)
 
-        // function cleanScores() {
-        //     localStorage.removeItem('name_User');
-        //     localStorage.removeItem('score');
-        //     ul_dom.classList.add('hide')
+        function cleanScores() {
+            localStorage.removeItem('name_User');
+            localStorage.removeItem('score');
+            ul_dom.classList.add('hide')
 
-        // }
+        }
     }
 
 
