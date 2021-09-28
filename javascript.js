@@ -1,19 +1,20 @@
 const title = document.querySelector('.title')
 const button = document.querySelector('.button');
 const countdown = document.querySelector('.countdown');
-const choiceDiv = document.getElementById("choices");
+const choiceDiv = document.getElementById('choices');
 const section_game = document.querySelector('#section_game')
 const tag_p = document.querySelector('#explanation')
 const show_score = document.querySelector('#show_score')
 const section_last_page = document.querySelector('#section_last_page')
 const btn_submit = document.querySelector('#btn_submit')
 const ul_dom = document.querySelector('#ul_dom')
-
+const buttons_high_score = document.querySelector('.buttons_high_score')
+const scoreStorage = []
 
 let currentIndex = 0;
-
 var time;
 var timer_html;
+
 
 const myQuestions = [
     {
@@ -76,7 +77,7 @@ function startGame() {
     button.classList.add('hide');
     startCountdown();
     startQuestions();
-    choiceDiv.removeAttribute("class")
+    choiceDiv.removeAttribute('class')
 }
 
 function startCountdown() {
@@ -92,17 +93,17 @@ function startCountdown() {
 }
 
 function startQuestions(){
-    choiceDiv.innerHTML = "";
+    choiceDiv.innerHTML = '';
     // 4, porem comeca no 0
     let currentQuestion = myQuestions[currentIndex]
 
     currentQuestion.options.forEach(function(choice, i){
-        var choiceButton = document.createElement("button");
-        choiceButton.setAttribute("class", 'button')
-        choiceButton.setAttribute("value", choice)
+        var choiceButton = document.createElement('button');
+        choiceButton.setAttribute('class', 'button')
+        choiceButton.setAttribute('value', choice)
 
         title.textContent = currentQuestion.question;
-        choiceButton.textContent = i + 1 + ". " + choice;
+        choiceButton.textContent = i + 1 + '. ' + choice;
 
         choiceDiv.appendChild(choiceButton);
         choiceButton.onclick = optionsQuestions;
@@ -113,25 +114,25 @@ function startQuestions(){
 
     function optionsQuestions() {
     
-    if(this.value === myQuestions[currentIndex].answer){
-        tag_p.classList.remove('hide')
-        tag_p.textContent = 'Correct!';
-        correct++
+        if(this.value === myQuestions[currentIndex].answer){
+            tag_p.classList.remove('hide')
+            tag_p.textContent = 'Correct!';
+            correct++
 
-    } else {
-        tag_p.classList.remove('hide')
-        tag_p.textContent = 'Wrong!';
-        incorrect++
-        time -= 10;
-    }
-     currentIndex++;
-
-    if(currentIndex === myQuestions.length){
-        clearInterval(timer_html)
-        showEndPage();  
-    }   else{
-            startQuestions();
+        } else {
+            tag_p.classList.remove('hide')
+            tag_p.textContent = 'Wrong!';
+            incorrect++
+            time -= 10;
         }
+        currentIndex++;
+
+        if(currentIndex === myQuestions.length){
+            clearInterval(timer_html)
+            showEndPage();  
+        }   else{
+                startQuestions();
+            }
     }
 }
 
@@ -142,10 +143,9 @@ function showEndPage() {
     tag_p.classList.add('hide');
     title.textContent = 'All done!';
     choiceDiv.parentNode.removeChild(choiceDiv)
-    
+
     show_score.classList.remove('hide');
     show_score.textContent = 'Your final score is ' + time;
-
     section_last_page.classList.remove('hide')
 
     btn_submit.addEventListener('click', getScores)
@@ -153,21 +153,57 @@ function showEndPage() {
 
 function getScores(event) {
     event.preventDefault()
-    var playerName = document.querySelector("input[name='player-name']").value
-    localStorage.setItem('name_User', playerName);
-    localStorage.setItem('score', time);
+    var playerName = document.querySelector('input[name="player-name"]').value
+
+    var score_and_user = {
+        score: time,
+        name: playerName,
+    }
+
+    localStorage.setItem('user', JSON.stringify(score_and_user.name));
+    localStorage.setItem('score', JSON.stringify(score_and_user.score));
+
     putScoresOnPage()
+
+    function putScoresOnPage() {
+    
+        section_last_page.classList.add('hide')
+        ul_dom.classList.remove('hide')
+        var li_scores = document.createElement('li');
+        var score_and_name = ul_dom.appendChild(li_scores);
+        
+        const storedUserName = JSON.parse(localStorage.getItem('user'));
+        const storedUserScore = JSON.parse(localStorage.getItem('score'));
+        score_and_name.textContent = (storedUserName + storedUserScore);
+
+        addButtons();
+    }
 }
 
-function putScoresOnPage() {
-    var storedUserName = localStorage.getItem("name_User");
-    var storedUserScore = localStorage.getItem("score");
-    section_last_page.classList.add('hide')
-    ul_dom.classList.remove('hide')
+    function addButtons(){
+        var go_back = document.createElement('button');
+        go_back.setAttribute('class', 'button');
+        go_back.textContent =('Go Back');
+        buttons_high_score.appendChild(go_back);
 
-    var li_scores = document.createElement('li');
+        go_back.addEventListener('click', reloadPage);
 
-    var score_and_name = ul_dom.appendChild(li_scores);
+        function reloadPage() {
+            location.reload()
+        }
 
-    score_and_name.textContent = (storedUserName + '-' + storedUserScore);
-}
+        var clear_score = document.createElement('button')
+        clear_score.setAttribute('class', 'button')
+        clear_score.textContent = 'Clear Scores'
+        buttons_high_score.appendChild(clear_score);
+        // clear_score.addEventListener('click', cleanScores)
+
+        // function cleanScores() {
+        //     localStorage.removeItem('name_User');
+        //     localStorage.removeItem('score');
+        //     ul_dom.classList.add('hide')
+
+        // }
+    }
+
+
