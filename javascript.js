@@ -9,12 +9,13 @@ const section_last_page = document.querySelector('#section_last_page')
 const btn_submit = document.querySelector('#btn_submit')
 const ul_dom = document.querySelector('#ul_dom')
 const buttons_high_score = document.querySelector('.buttons_high_score')
-const scoreStorage = []
 
 let currentIndex = 0;
 var time;
 var timer_html;
 
+
+const storedUserName = JSON.parse(localStorage.getItem('user_and_score')) || []
 
 
 const myQuestions = [
@@ -137,11 +138,10 @@ function startQuestions(){
     }
 }
 
-const user_score = JSON.parse(localStorage.getItem('highScore'))
-
 function showEndPage() {
     countdown.textContent = time
     tag_p.classList.add('hide');
+    btn_submit.classList.add('button');
     title.textContent = 'All done!';
     choiceDiv.parentNode.removeChild(choiceDiv)
 
@@ -161,50 +161,51 @@ function getScores(event) {
         name: playerName,
     }
 
-    scoreStorage.push(score_and_user);
+    storedUserName.push(score_and_user);
     
-    localStorage.setItem('user_and_score', JSON.stringify(scoreStorage));
+    localStorage.setItem('storedUserName', JSON.stringify(storedUserName));
     // localStorage.setItem('score', JSON.stringify(time)); 
 
     putScoresOnPage()
 }
 
 function putScoresOnPage() {
-    var storedUserName = JSON.parse(localStorage.getItem('user_and_score'));
 
     section_last_page.classList.add('hide')
     ul_dom.classList.remove('hide')
     var li_scores = document.createElement('li');
     var score_and_name = ul_dom.appendChild(li_scores);
-    score_and_name.textContent = (storedUserName);
 
+    for(i = 0; i < storedUserName.length; i++){
+        score_and_name.textContent = 'Score: ' + storedUserName[i].score + " Name: " + storedUserName[i].name
+    }
     addButtons();
 }
 
-    function addButtons(){
-        var go_back = document.createElement('button');
-        go_back.setAttribute('class', 'button');
-        go_back.textContent =('Go Back');
-        buttons_high_score.appendChild(go_back);
+function addButtons(){
+    var go_back = document.createElement('button');
+    go_back.setAttribute('class', 'button');
+    go_back.textContent =('Go Back');
+    buttons_high_score.appendChild(go_back);
 
-        go_back.addEventListener('click', reloadPage);
+    go_back.addEventListener('click', reloadPage);
 
-        function reloadPage() {
-            location.reload()
-        }
-
-        var clear_score = document.createElement('button')
-        clear_score.setAttribute('class', 'button')
-        clear_score.textContent = 'Clear Scores'
-        buttons_high_score.appendChild(clear_score);
-        clear_score.addEventListener('click', cleanScores)
-
-        function cleanScores() {
-            localStorage.removeItem('name_User');
-            localStorage.removeItem('score');
-            ul_dom.classList.add('hide')
-
-        }
+    function reloadPage() {
+        location.reload()
     }
+
+    var clear_score = document.createElement('button')
+    clear_score.setAttribute('class', 'button')
+    clear_score.textContent = 'Clear Scores'
+    buttons_high_score.appendChild(clear_score);
+    clear_score.addEventListener('click', cleanScores)
+
+    function cleanScores() {
+        localStorage.removeItem('name_User');
+        localStorage.removeItem('score');
+        ul_dom.classList.add('hide')
+
+    }
+}
 
 
