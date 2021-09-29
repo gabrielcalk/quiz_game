@@ -1,6 +1,10 @@
 /* Defining the purple color on a variable */
 :root{
     --first-color: rgb(146, 10, 146);
+    --text-color: black;
+    --shadow-color: #ff00c8;
+    --btn-color: white;
+    --bg-color: #141218;
 }
 
 /* Adding font-family, margin and padding 0 and a border-box to all the document */
@@ -8,84 +12,218 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
 }
+
+/* Adding a background and a color on the body */
+body {
+    background: rgb(49, 47, 47);
+    color: white;
+}
+
 
 /* Adding some padding on the van tag */
 nav{
     padding: 10px;
-}
-
-button{
-    margin: 3px;
-}
-
-/* Adding font-size, color, background-color, border, padding and margin on the top of the button */
-.button{
-    font-size: 17px;
-    color: white;
-    background: var(--first-color);
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 5px;
     margin-top: 10px;
-    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* Adding a different color background and a cursor when pass the mouse on a button */
-button:hover{
-    background-color: rgb(171, 121, 218);
+/* Adding some margin on the left and right on the tag input  */
+input{
+    margin: 0 10px;
+}
+
+/* Adding the border, background color, radius, color and margin on the ol tag */
+ol{
+    border: 1px solid var(--text-color);
+    background-color: var(--text-colo);
+    border-radius: 15px;
+    margin: 20px 0;
+    color: var(--btn-color)
+}
+
+/* Adding margin top and bottom, padding bottom and border on the bottom of all the li that are in an ol tag */
+ol li{
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--btn-color);
+}
+
+/* Adding some style on the "viwe highscores" button and on the time section */
+#view_scores, span {
+    position:relative;
+    padding: 10px 20px;  
+    border: none;
+    background: none;
     cursor: pointer;
+    margin-right: 5px;
+    
+    font-family: "Source Code Pro";
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 30px;  
+    color: var(--text-color);
+    
+    background-color: var(--btn-color);
+    box-shadow: var(--shadow-color) 2px 2px 22px;
+    border-radius: 4px; 
+    z-index: 0;  
+    overflow: hidden;   
+  }
+
+/* Adding the boobles on the button "view highscore" */
+#view_scores::before {
+    content: '';
+    pointer-events: none;
+    opacity: .6;
+    background:
+        radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+        radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+        radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+
+    width: 100%;
+    height: 300%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    animation: bubbles 5s linear infinite both;
+    }
+
+    @keyframes bubbles {
+    from {
+        transform: translate();
+    }
+    to {
+        transform: translate(0, -66.666%);
+    }
 }
 
-/* Adding a color on the "view highscores" text and moving to the left  */
-#view_scores{
-    color: var(--first-color);
-    text-align: left;
-}
 
-/* Adding a color on the section on the nav and floating to the right */
-#section_timer{
-    color: var(--first-color);
-    float: right;
-}
-
-/* Adding margin, centralizing the text and some width on the section */
+/* Adding margin, centralizing the text and some width on the section of the game (questions and choices */
 #section_game{
     margin: auto;
     text-align: center;
     margin-top: 100px;
-    width: 500px;
+    width: 600px;
 }
 
-/* Adding a 35px font-size on the title, margin on the bottom of the title and putting in bold */
+/* Adding a 40px font-size on the title, margin on the bottom of the title and putting in bold */
 .title{
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bold;
-    margin-bottom: 25px;
-}
-
-#explanation{
     margin-bottom: 20px;
 }
 
+/* Adding a text shadow when you pass the mouse on the title */
+.title:hover{
+    text-shadow: 2px 2px 2px var(--shadow-color)
+}
+
+/* Adding some margin on the bottom and top on the explanation id (p tag) */
+#explanation{
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+/* css to hide things */
 .hide{
     display: none;
 }
 
+/* making the button appear in 2 columns and with one gap between */
 #choices{
     display: inline-grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
 }
 
+/* Centralizing and alignning the items in the last page id */
 #last_page{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
+/* Adding some margin o the p tag that show the user score */
+#show_score{
+    margin-bottom: 30px;
+}
+
+/* Adding some height on the input tag */
 #input_score{
     height: 35px;
+}
+
+/* Styling the button with the rainbow design */
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Making all the button look like an rainbow */
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+/* changing the text of the rainbow button */
+.glow-on-hover:active {
+    color: #000
+}
+
+/* Making the background transparent after the user click on the button */
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+/* Changing the opacity after the user pass on the button */
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }

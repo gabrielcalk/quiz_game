@@ -12,39 +12,46 @@
 
 <!-- nav of my page with the time -->
     <nav>
-        <span id ='view_scores'>View Highscores</span>
-        
+        <button id ='view_scores'>View Highscores</button>
+
+<!-- Section with the timer -->
         <section id= section_timer>
-            <span>Time: </span>
-            <span class='countdown'></span>
+            <div class="left"></div>
+                <span> Time: </span>
+                <span class='countdown'></span>
+            <div class="right"></div>
         </section>
     </nav>
 
 <!-- main of my page with the game -->
     <main>
+
+<!-- Section that will appear after the game start with the title and options -->
         <section id='section_game'>
-            <h1 class = 'title'>Coding Quiz Challenge!</h1>
+            <h1 class ='title'>Coding Quiz Challenge!</h1>
             <p id = 'show_score' class = 'hide'></p>
             <ol id='ul_dom' class='hide'></ol>
 
-                <section class='hide' id = 'section_last_page'>
+ <!-- Section that will appear on the final of the game -->
+                <section class='hide' id ='section_last_page'>
                     <div id = 'last_page'>
                         <p id = 'enter_initials'>Enter initials:</p>
                         <input id= 'input_score' name='player-name' type="text" value="">
-                        <button type = 'submit' id ='btn_submit'>submit</button>
+                        <button type ='submit' id ='btn_submit'>SUBMIT</button>
                     </div>
                 </section>
-
-        
+                
+<!-- Div that will suport all the options on the game -->
             <div id='choices' class="hide"></div>
 
+<!-- Explanation of the game -> I used this part to add "correct" and "wrong" -->
             <p id='explanation'>
-                Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+                Try to answer the following questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
             </p>
 
             <section class='buttons_high_score'></section>
 
-            <button class = 'button'>Start Quiz</button>
+            <button class = 'glow-on-hover'>Start Quiz</button>
 
         </section>  
     </main>
