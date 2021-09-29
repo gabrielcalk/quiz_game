@@ -15,59 +15,59 @@ var time;
 var timer_html;
 
 
-const storedUserName = JSON.parse(localStorage.getItem('user_and_score')) || []
+const storedUserName = JSON.parse(localStorage.getItem('storedUserName')) || []
 
 
 const myQuestions = [
     {
-        question: 'Commonly used data types do not include:',
+        question: 'Who is the most handsome person in the house?',
         options: [
-        'strings',
-        'booleans',
-        'alerts',
-        'numbers',
+        'Gabriel',
+        'Trey',
+        'Snoopy',
+        'Trey fishs',
         ],
-        answer: 'alerts'
+        answer: 'Gabriel'
     },
     {
-        question: 'The condition in an if / else statement is enclosed within _______.',
+        question: 'Who is the person who poops the most',
         options: [
-            'quotes', 
-            'curly brackets',
-            'parentheses',
-            'square brackets',
+            'Mark Texas', 
+            'Mark Terril',
+            'Snoopy',
+            'All the options above',
         ],
-        answer: 'parentheses'
+        answer: 'All the options above'
     },
     {
-        question: 'Arrays in JavaScript can be used to store ________.',
+        question: 'guess who i am: i know everything!',
         options: [
-            'number and string',
-            'other arrays',
-            'booleans',
-            'all of the above',
+            'Jillian',
+            'Gabriel',
+            'Katia',
+            'Trey',
         ],
-        answer: 'all of the above'
+        answer: 'Trey'
     },
     {
-        question: 'String values must be enclosed within ______ when being assigned to variables.',
+        question: 'Who is the most stressed person in the house',
         options: [
-            'commas',
-            'curly brackets',
-            'quotes',
-            'parentheses',
+            'Trey',
+            'Mark',
+            'Jillian',
+            'Katia',
         ],
-        answer: 'quotes'
+        answer: 'Katia'
     },
     {
-        question: 'A very useful tool used during development and debugging for priting content to the debugger is:',
+        question: 'Who is the fastest?',
         options: [
-            'JavaScript',
-            'terminal / bash',
-            'for loops',
-            'console.log',
+            '2 times Mark',
+            'Trey',
+            'Gabriel',
+            'Snoopy',
         ],
-        answer: 'console.log'
+        answer: 'Gabriel'
     },
 ];
 
@@ -173,10 +173,10 @@ function putScoresOnPage() {
 
     section_last_page.classList.add('hide')
     ul_dom.classList.remove('hide')
-    var li_scores = document.createElement('li');
-    var score_and_name = ul_dom.appendChild(li_scores);
 
     for(i = 0; i < storedUserName.length; i++){
+        var li_scores = document.createElement('li');
+        var score_and_name = ul_dom.appendChild(li_scores);
         score_and_name.textContent = 'Score: ' + storedUserName[i].score + " Name: " + storedUserName[i].name
     }
     addButtons();
@@ -201,8 +201,7 @@ function addButtons(){
     clear_score.addEventListener('click', cleanScores)
 
     function cleanScores() {
-        localStorage.removeItem('name_User');
-        localStorage.removeItem('score');
+        localStorage.removeItem('storedUserName');
         ul_dom.classList.add('hide')
 
     }
