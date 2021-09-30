@@ -1,7 +1,5 @@
 # quiz_game
 
-# advancedcss_webpage
-
 ## *Table of Contents*
 - [Description](#description)
 - [Authors](#authors)
